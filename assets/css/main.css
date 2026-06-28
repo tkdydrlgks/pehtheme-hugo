@@ -2134,3 +2134,140 @@ video {
     line-height: 1;
   }
 }
+
+
+/* ==========================================================================
+   오직 메인 페이지 상품 리스트(main-products)에만 작동하는 모바일 3열 커스텀
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 1. 메인 상품 영역 한 줄에 3개 배치 + 카드 사이의 간격(gap)을 넓혀 여유를 줌 */
+  .main-products {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 16px 12px !important; /* 위아래 간격 16px, 좌우 간격 12px로 여유 있게 조절 */
+  }
+
+  /* 2. 이미지 영역 정사각형(1:1) 비율 유지 */
+  .main-products figure {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  /* 3. 날짜와 설명글은 숨기고, 제목 주변 여백(Padding)에 여유를 줌 */
+  .main-products .p-6 {
+    padding: 0.75rem 0.5rem 0.75rem 0.5rem !important; /* 위아래 여백을 늘려 글씨 숨통을 틔움 */
+    text-align: center !important;
+  }
+
+  /* 날짜와 본문 설명 텍스트 숨기기 */
+  .main-products .p-6 time, 
+  .main-products .p-6 p {
+    display: none !important; 
+  }
+
+  /* 4. 상품 코드(제목) 크기와 줄 간격 조절 */
+  .main-products .p-6 h3 {
+    margin: 0 !important;
+    font-size: 0.75rem !important; /* 원하셨던 글자 크기 유지 */
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 1 !important;
+    overflow: hidden !important;
+    word-break: break-all !important;
+  }
+}
+
+
+
+/* ==========================================================================
+   [PREMIUM] PC & 모바일 전체 카테고리 섹션 세련된 디자인 커스텀
+   ========================================================================== */
+
+/* 1. 카테고리 전체 레이아웃 박스 밸런스 조정 */
+.w-full.mt-6.mb-4 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-top: 2.5rem !important;  /* 위쪽 본문과의 고급스러운 여백 공간 확보 */
+  margin-bottom: 2rem !important;
+}
+
+/* 2. 상하 구분선 - 투명하고 은은하게 격상 (너무 진한 선 탈피) */
+.w-full.mt-6.mb-4 hr {
+  width: 100% !important;
+  border-color: #f1f1f3 !important; /* 살짝 더 밝고 투명한 고급 회색선 */
+}
+
+/* 3. "카테고리" 타이틀 텍스트 디자인 - 자간을 넓혀 명품 폰트 감성 적용 */
+/* [Style B] 매거진 느낌의 어시스트 라인 스타일 */
+.w-full.mt-6.mb-4 .text-center span {
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  color: #18181b !important;           /* 깊이감 있는 블랙 */
+  letter-spacing: 0.25em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;                /* 선과 글자 사이 간격 */
+  margin-top: 0.2rem;
+}
+
+/* 글자 앞뒤로 얇은 선 디자인 주입 */
+.w-full.mt-6.mb-4 .text-center span::before,
+.w-full.mt-6.mb-4 .text-center span::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 20px !important;              /* 선 길이 */
+  height: 1px !important;              /* 선 두께 */
+  background-color: #d4d4d8 !important;/* 은은한 연회색 선 */
+}
+
+/* 4. [PC & 모바일 공통] 카테고리 버튼 컨테이너 정렬 및 배치 조율 */
+.main-category-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 0 auto !important; /* 타이틀 아래로 떨어지는 고급스러운 마진 */
+  padding: 0 0 16px 0 !important;      /* 아랫선과의 여유 공간 */
+  gap: 12px 10px !important;           /* PC에서 더 여유로운 호흡을 위한 간격 조정 */
+  width: 100% !important;
+}
+
+/* 5. [PC & 모바일 공통] 카테고리 버튼 디자인 - 미니멀 라인 버튼 */
+.main-category-bar a {
+  font-size: 0.8rem !important;        /* PC에서 가독성 좋은 크기로 미세 조정 */
+  font-weight: 500 !important;
+  background-color: transparent !important; /* 답답한 회색 배경 삭제 */
+  color: #52525b !important;               /* 모던한 미드 그레이 */
+  border: 1px solid #e4e4e7 !important;     /* 얇고 정교한 테두리 선 추가 */
+  padding: 0.45rem 1.1rem !important;      /* PC 화면 비율에 맞게 슬림하고 고급스러운 장평 확보 */
+  border-radius: 9999px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 모션 효과 */
+}
+
+/* 6. [PC & 모바일 공통] 호버 및 터치 시 포인트 - 시크한 블랙앤화이트 스타일 반전 */
+.main-category-bar a:hover {
+  background-color: #18181b !important; /* 마우스를 올리거나 누르면 시크한 블랙 배경 */
+  color: #ffffff !important;           /* 글자는 선명한 화이트로 반전 */
+  border-color: #18181b !important;    /* 테두리도 블랙 매칭 */
+  transform: translateY(-2px);         /* PC에서 마우스를 올렸을 때 조금 더 기분 좋게 통통 뜨는 효과 */
+  box-shadow: 0 4px 12px rgba(24, 24, 27, 0.08); /* 은은한 명품 감성 그림자 추가 */
+}
+
+/* 7. 모바일 전용 미세 조정 (화면이 작아질 때 비율을 최적화) */
+@media (max-width: 768px) {
+  .main-category-bar {
+    margin: 14px auto 0 auto !important;
+    gap: 10px 8px !important;
+  }
+  .main-category-bar a {
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.85rem !important;
+  }
+  .main-category-bar a:hover {
+    transform: translateY(-1px);
+  }
+}
